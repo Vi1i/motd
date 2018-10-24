@@ -1,0 +1,17 @@
+# - Config file for the MotdCore package
+# It defines the following variables
+#  MOTDCORE_INCLUDE_DIRS - include directories for Motd
+#  MOTDCORE_LIBRARIES    - libraries to link against
+#  MOTDCORE_EXECUTABLE   - the bar executable
+
+# Compute paths
+get_filename_component(MOTDCORE_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+set(MOTDCORE_INCLUDE_DIRS "@CONF_INCLUDE_DIRS@")
+
+# Our library dependencies (contains definitions for IMPORTED targets)
+if(NOT TARGET MotdCore AND NOT Motd_BINARY_DIR)
+    include("${MOTD_CMAKE_DIR}/MotdCoreTargets.cmake")
+endif()
+
+# These are IMPORTED targets created by MotdCoreTargets.cmake
+set(MOTD_LIBRARIES MotdCore)

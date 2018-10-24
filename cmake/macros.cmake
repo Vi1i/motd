@@ -1,0 +1,9 @@
+include(CheckIncludeFileCXX)
+
+macro(CHECK_INCLUDE_FILE_CXX_ERROR INCLUDE_FILE HAVE_FILE)
+    CHECK_INCLUDE_FILE_CXX(${INCLUDE_FILE} ${HAVE_FILE})
+    IF(NOT ${HAVE_FILE})
+        UNSET(HAVE_UNITTESTXX CACHE)
+        message( FATAL_ERROR "${INCLUDE_FILE} is not found" )
+    ENDIF()
+endmacro()
